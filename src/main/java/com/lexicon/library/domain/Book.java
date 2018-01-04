@@ -1,10 +1,18 @@
 package com.lexicon.library.domain;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+
 
 @Entity
 public class Book {
@@ -13,7 +21,7 @@ public class Book {
 	 */	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private String id;
 
 	@NotNull
@@ -28,7 +36,9 @@ public class Book {
 	private String publishingHouse;
 	private int noOfPages;
 
-
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@JoinColumn (name="id", nullable = false)
+	private Loan loan;
 
 	public Book() {
 
