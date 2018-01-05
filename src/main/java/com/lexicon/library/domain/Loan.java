@@ -23,13 +23,11 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-//	private Member member;
-//	private Book book;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private boolean active=true;
 	
-	@OneToMany(mappedBy="book", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="loan", fetch=FetchType.LAZY)
 	private Set<Book> books;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)

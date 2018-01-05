@@ -84,7 +84,7 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 
 	@Override
-	public void update(Predicate<Book> updateCriteria) {
+	public void update(String updateColumn, String updateValue) {
 		// TODO Auto-generated method stub
 		
 	}

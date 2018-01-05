@@ -6,19 +6,19 @@ import com.lexicon.library.domain.Book;
 
 public interface BookDataAccess {
 	
-	public void insert(Book newBook);
+	public abstract void insert(Book newBook);
 	
-	public void update(String updateColumn, String updateValue);
+	public abstract void update(String updateColumn, String updateValue);
 	
-	public List<Book> findAll();
+	public abstract List<Book> findAll();
 
-	public List<Book> findById(String id);
+	public abstract List<Book> findById(String id);
 	
-	public List<Book> findByTitle(String title);
+	public abstract List<Book> findByTitle(String title);
 	
-	public List<Book> findByGenre(String genre);
+	public abstract List<Book> findByGenre(String genre);
 	
-	public List<Book> findByAuthor(String author);
+	public abstract List<Book> findByAuthor(String author);
 
-	public List<Book> findByISBN(String isbn);
+	public abstract List<Book> findByISBN(String isbn);
 }
