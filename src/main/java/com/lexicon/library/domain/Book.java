@@ -22,7 +22,7 @@ public class Book {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private String id;
+	private int id;
 
 	@NotNull
 	private String title;
@@ -34,7 +34,10 @@ public class Book {
 	@NotNull
 	private String isbn;
 	private String publishingHouse;
+
 	private int noOfPages;
+	
+	private bookStatus status = bookStatus.AVAILABLE;
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn (name="id", nullable = false)
@@ -46,20 +49,39 @@ public class Book {
 
 
 	public Book(String title, String genre, String author,
-			String isbn, String publishingHouse, int noOfPages) {
+			String isbn, String publishingHouse) {
 		this.title = title;
 		this.genre = genre;
 		this.author = author;
 		this.isbn = isbn;
 		this.publishingHouse = publishingHouse;
-		this.noOfPages = noOfPages;
 	}
 
 
-	public String getId() {
-		return id;
+	public bookStatus getStatus() {
+		return status;
 	}
-	public void setId(String id) {
+
+
+	public void setStatus(bookStatus status) {
+		this.status = status;
+	}
+
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+
+	public int getId() {
+		return this.id;
+	}
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTitle() {
