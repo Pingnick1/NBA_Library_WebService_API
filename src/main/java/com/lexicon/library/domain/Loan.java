@@ -2,17 +2,25 @@ package com.lexicon.library.domain;
 
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+
 
 @Entity
 public class Loan {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 //	private Member member;
@@ -20,6 +28,13 @@ public class Loan {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private boolean active=true;
+	
+	@OneToMany(mappedBy="book", fetch=FetchType.LAZY)
+	private Set<Book> books;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn (name="id", nullable = false)
+	private Member member;
 	
 	public Loan() {
 		super();
