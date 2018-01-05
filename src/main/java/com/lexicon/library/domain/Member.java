@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Member {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
 	private String firstName;
@@ -25,4 +25,11 @@ public class Member {
 		this.surName = surName;
 
 	}
+
+	@Override
+	public String toString() {
+		return "Member: " + firstName + ", surName=" + surName;
+	}
+	
+	
 }

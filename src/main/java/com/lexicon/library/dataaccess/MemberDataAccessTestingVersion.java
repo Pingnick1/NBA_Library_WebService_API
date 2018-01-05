@@ -1,12 +1,12 @@
 package com.lexicon.library.dataaccess;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
 
 import com.lexicon.library.domain.Member;
-
 
 @Stateless
 //@Alternative
