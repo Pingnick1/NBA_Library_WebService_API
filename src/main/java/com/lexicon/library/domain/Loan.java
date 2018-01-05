@@ -15,18 +15,19 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+//	private Member member;
+//	private Book book;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private boolean active;
+	private boolean active=true;
 	
 	public Loan() {
 		super();
 	}
-	public Loan(LocalDate startDate, LocalDate endDate, boolean active) {
+	public Loan(LocalDate startDate, LocalDate endDate) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.active = active;
 	}
 	public int getId() {
 		return id;
@@ -49,8 +50,8 @@ public class Loan {
 	public boolean isActive() {
 		return active;
 	}
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setActiveFalse(boolean active) {
+		this.active = false;
 	} 
 	
 }
