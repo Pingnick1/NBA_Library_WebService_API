@@ -12,6 +12,8 @@ public class Member {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
+	private static final long serialVersionUID = 1L;
+	
 	private String firstName;
 	private String surName;
 	
