@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Member {
+public class Member implements java.io.Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,7 +17,7 @@ public class Member {
 	private String firstName;
 	private String surName;
 	
-	public Member() {	}
+	public Member() {}
 	
 	public Member(String firstName, String surName) {
 		super();
@@ -28,9 +28,23 @@ public class Member {
 
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getSurName() {
+		return surName;
+	}
+	public void setSurName(String surName) {
+		this.surName = surName;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Member: " + firstName + ", surName=" + surName;
+		return "Member: " + firstName + " " + surName;
 	}
 	
 	
