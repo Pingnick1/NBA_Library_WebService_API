@@ -25,7 +25,7 @@ public class BookManagementImplementation implements BookManagementService {
 	}
 
 	@Override
-	public List<Book> searchById(int id) {
+	public Book searchById(int id) {
 		return dao.findById(id);
 	}
 	
