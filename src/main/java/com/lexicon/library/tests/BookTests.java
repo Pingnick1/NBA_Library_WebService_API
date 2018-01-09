@@ -13,6 +13,7 @@ import com.lexicon.library.domain.Genres;
 public class BookTests {
 
 	public static void main(String[] args) throws NamingException {
+		/*
 
 		Properties jndiProperties = new Properties();
 		jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
@@ -38,6 +39,7 @@ public class BookTests {
 
 		List<Book> books = service.getAllBooks();
 		System.out.println(books);
+		*/
 
 	}
 
