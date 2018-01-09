@@ -40,7 +40,6 @@ public class Book {
 	private bookStatus status = bookStatus.AVAILABLE;
 
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
-	@JoinColumn (name="id", nullable = false)
 	private Loan loan;
 
 	public Book() {
@@ -76,14 +75,7 @@ public class Book {
 	public void setLoan(Loan loan) {
 		this.loan = loan;
 	}
-
-
-	public int getId() {
-		return this.id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getTitle() {
 		return title;
 	}

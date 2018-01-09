@@ -13,7 +13,6 @@ import com.lexicon.library.domain.Book;
 
 @Stateless
 //@Alternative
-@ProductionDao
 public class BookDataAccessProductionVersion implements BookDataAccess {
 
 	@PersistenceContext

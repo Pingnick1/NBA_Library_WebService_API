@@ -25,29 +25,29 @@ public class Loan {
 	
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private boolean active=true;
+	private loanStatus status;
 	
 	@OneToMany(mappedBy="loan", fetch=FetchType.LAZY)
 	private Set<Book> books;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn (name="id", nullable = false)
 	private Member member;
 	
 	public Loan() {
 		super();
+	}
+	public loanStatus getStatus() {
+		return status;
+	}
+	public void setStatus(loanStatus status) {
+		this.status = status;
 	}
 	public Loan(LocalDate startDate, LocalDate endDate) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -60,11 +60,5 @@ public class Loan {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActiveFalse(boolean active) {
-		this.active = false;
-	} 
-	
+
 }
