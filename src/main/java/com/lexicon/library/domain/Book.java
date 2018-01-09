@@ -28,7 +28,7 @@ public class Book implements Serializable{
 	@NotNull
 	private String title;
 	@NotNull
-	private String genre;
+	private Genres genre;
 	@NotNull
 	private String author;
 	private String shelf = "Unknown";
@@ -49,8 +49,8 @@ public class Book implements Serializable{
 	}
 
 
-	public Book(String title, String genre, String author,
-			long isbn, String publishingHouse) {
+	public Book(String title, Genres genre, String author,
+			long isbn) {
 		this.title = title;
 		this.genre = genre;
 		this.author = author;
@@ -91,10 +91,10 @@ public class Book implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getGenre() {
+	public Genres getGenre() {
 		return genre;
 	}
-	public void setGenre(String genre) {
+	public void setGenre(Genres genre) {
 		this.genre = genre;
 	}
 	public String getAuthor() {

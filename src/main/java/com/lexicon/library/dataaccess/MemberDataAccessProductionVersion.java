@@ -12,7 +12,7 @@ import com.lexicon.library.domain.Member;
 
 @Stateless
 //@Default
-public class MemberDataAccessProductionVersion implements MemberDataAccess, MemberDataAccess {
+public class MemberDataAccessProductionVersion implements MemberDataAccess {
 
 	@PersistenceContext
 	private EntityManager em;
