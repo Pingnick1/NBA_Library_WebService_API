@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 
@@ -27,20 +28,15 @@ public class Loan {
 	private LocalDate endDate;
 	private loanStatus status;
 	
-	@OneToMany(mappedBy="loan", fetch=FetchType.LAZY)
-	private Set<Book> books;
+	@OneToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
+	@JoinColumn(name = "BOOKS_ID")
+	private Book books;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Member member;
 	
 	public Loan() {
 		super();
-	}
-	public loanStatus getStatus() {
-		return status;
-	}
-	public void setStatus(loanStatus status) {
-		this.status = status;
 	}
 	public Loan(LocalDate startDate, LocalDate endDate) {
 		super();
@@ -60,5 +56,11 @@ public class Loan {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-
+	public loanStatus getStatus() {
+		return status;
+	}
+	public void setStatus(loanStatus status) {
+		this.status = status;
+	}
+	
 }
