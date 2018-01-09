@@ -1,52 +1,69 @@
 package com.lexicon.library.dataaccess;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
+/*
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+*/
 import com.lexicon.library.domain.Book;
 
 
 @Stateless
-//@Alternative
-@ProductionDao
 public class BookDataAccessProductionVersion implements BookDataAccess {
 
-	@PersistenceContext
+	@PersistenceContext 
 	private EntityManager em;	
+	public List<Book> books = new ArrayList<Book>();
 	
 	@Override
 	public void insert(Book book) {
+		/*
 		em.persist(book);
-
+		*/
+		books.add(book);
+		
 	}
 
 	@Override
 	public List<Book> findAll() {
+		/*
 		Query q = em.createQuery("select book from Book book");
 		List<Book> books = q.getResultList();
-		
+		*/
 		return books;
 	}
 
 	@Override
-	public List<Book> findById(String title) {
-		
-		Query q = em.createQuery("select book from Book book");
+	public List<Book> findById(int id) {
+		/*
+		Query q = em.createQuery("select book from Book book where book.id = :id");
+		q.getParameter(id);
 		List<Book> books = q.getResultList();
-		
+		*/
 		return books;		
 		
 	}
-
+	
+	@Override
+	public void update(String updateColumn, String updateValue) {
+		/*
+		Query q = em.("select book from Book book where book.isbn = :isbn");
+		q.getParameter(isbn);
+		*/
+		
+	}
+/*
 	@Override
 	public List<Book> findByTitle(String title) {
-		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createQuery("select book from Book book where book.title = :title");
+		q.getParameter(title);
 		List<Book> books = q.getResultList();
 		
 		return books;		
@@ -54,9 +71,10 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 	
 	@Override
-	public List<Book> findByAuthor(String title) {
+	public List<Book> findByAuthor(String author) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createQuery("select book from Book book where book.author = :author");
+		q.getParameter(author);
 		List<Book> books = q.getResultList();
 		
 		return books;		
@@ -64,9 +82,10 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 
 	@Override
-	public List<Book> findByGenre(String title) {
+	public List<Book> findByGenre(String genre) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createQuery("select book from Book book where book.genre = :genre");
+		q.getParameter(genre);
 		List<Book> books = q.getResultList();
 		
 		return books;		
@@ -74,19 +93,14 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 
 	@Override
-	public List<Book> findByISBN(String title) {
+	public List<Book> findByISBN(String isbn) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createQuery("select book from Book book where book.isbn = :isbn");
+		q.getParameter(isbn);
 		List<Book> books = q.getResultList();
 		
 		return books;		
 		
 	}
-
-	@Override
-	public void update(String updateColumn, String updateValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
+*/
 }

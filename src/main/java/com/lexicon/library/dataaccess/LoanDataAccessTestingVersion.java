@@ -11,7 +11,6 @@ import com.lexicon.library.domain.Loan;
 
 @Stateless
 @Alternative
-@TestingDao
 public class LoanDataAccessTestingVersion implements LoanDataAccess {
 	
 	public List<Loan> findAllLoan(){

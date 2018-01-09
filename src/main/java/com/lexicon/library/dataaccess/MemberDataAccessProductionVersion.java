@@ -12,17 +12,22 @@ import com.lexicon.library.domain.Member;
 
 @Stateless
 //@Default
-@ProductionDao
-public class MemberDataAccessProductionVersion implements MemberDataAccess {
+public class MemberDataAccessProductionVersion implements MemberDataAccess, MemberDataAccess {
 
 	@PersistenceContext
 	private EntityManager em;
 	
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.MemberDataAccess#insert(com.lexicon.library.domain.Member)
+	 */
 	@Override
 	public void insert(Member newMember) {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.MemberDataAccess#findAll()
+	 */
 	@Override
 	public List<Member> findAll() {
 		
@@ -32,6 +37,9 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 		return members;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.MemberDataAccess#findBySurname(java.lang.String)
+	 */
 	@Override
 	public List<Member> findBySurname(String surName) {
 
