@@ -32,8 +32,8 @@ public class Loan {
 	@JoinColumn(name = "BOOKS_ID")
 	private Book books;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	private Member member;
+//	@ManyToOne(cascade=CascadeType.PERSIST)
+//	private Member member;
 	
 	public Loan() {
 		super();

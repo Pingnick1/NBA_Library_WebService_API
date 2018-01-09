@@ -6,10 +6,19 @@ import com.lexicon.library.domain.Loan;
 
 public interface LoanDataAccess {
 
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#insertLoan(com.lexicon.library.domain.Loan)
+	 */
 	void insertLoan(Loan loan);
 
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#findAllLoan()
+	 */
 	List<Loan> findAllLoan();
 
-	List<Loan> findByIdLoan(String title);
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#findByIdLoan(java.lang.String)
+	 */
+	Loan findByIdLoan(int id);
 
 }

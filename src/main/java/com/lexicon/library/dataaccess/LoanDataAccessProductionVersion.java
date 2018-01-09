@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.lexicon.library.domain.Loan;
 
 @Stateless
-public class LoanDataAccessProductionVersion implements LoanDataAccess {
+public class LoanDataAccessProductionVersion implements LoanDataAccess{
 
 	@Inject
 	private EntityManager em;
@@ -17,6 +17,9 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess {
 	
 	/* (non-Javadoc)
 	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#insertLoan(com.lexicon.library.domain.Loan)
+	 */
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccess#insertLoan(com.lexicon.library.domain.Loan)
 	 */
 	@Override
 	public void insertLoan(Loan loan) {
@@ -27,6 +30,9 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess {
 	
 	/* (non-Javadoc)
 	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#findAllLoan()
+	 */
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccess#findAllLoan()
 	 */
 	@Override
 	public List<Loan> findAllLoan() {
@@ -40,13 +46,13 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess {
 	/* (non-Javadoc)
 	 * @see com.lexicon.library.dataaccess.LoanDataAccessjhg#findByIdLoan(java.lang.String)
 	 */
+	/* (non-Javadoc)
+	 * @see com.lexicon.library.dataaccess.LoanDataAccess#findByIdLoan(int)
+	 */
 	@Override
-	public List<Loan> findByIdLoan(String title) {
+	public Loan findByIdLoan(int id) {
 		
-		Query q = em.createQuery("select loan from Loan loan");
-		List<Loan> loans = q.getResultList();
-		
-		return loans;		
+		return em.find(Loan.class, id);		
 		
 	}
 	
