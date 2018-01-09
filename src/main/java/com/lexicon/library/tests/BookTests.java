@@ -1,14 +1,6 @@
 package com.lexicon.library.tests;
 
-import java.util.List;
-import java.util.Properties;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import com.lexicon.library.bookmanagement.BookManagementService;
-import com.lexicon.library.domain.Book;
-import com.lexicon.library.domain.Genres;
 
 public class BookTests {
 
