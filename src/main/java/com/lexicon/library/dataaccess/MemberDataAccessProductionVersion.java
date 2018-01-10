@@ -3,6 +3,7 @@ package com.lexicon.library.dataaccess;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 //import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
