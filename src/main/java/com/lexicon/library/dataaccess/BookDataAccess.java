@@ -12,7 +12,7 @@ public interface BookDataAccess {
 	
 	public abstract List<Book> findAll();
 
-	public abstract List<Book> findById(String id);
+	public abstract Book findById(int id);
 	
 	public abstract List<Book> findByTitle(String title);
 	
@@ -20,5 +20,7 @@ public interface BookDataAccess {
 	
 	public abstract List<Book> findByAuthor(String author);
 
-	public abstract List<Book> findByISBN(String isbn);
+	public abstract List<Book> findByISBN(long isbn);
+
+	void deleteBook(Book book);
 }

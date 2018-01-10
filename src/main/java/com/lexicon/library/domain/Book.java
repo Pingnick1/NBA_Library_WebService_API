@@ -32,7 +32,7 @@ public class Book {
 	private String author;
 	private String shelf = "Unknown";
 	@NotNull
-	private String isbn;
+	private long isbn;
 	private String publishingHouse;
 
 	private int noOfPages;
@@ -48,12 +48,11 @@ public class Book {
 
 
 	public Book(String title, String genre, String author,
-			String isbn, String publishingHouse) {
+			long isbn) {
 		this.title = title;
 		this.genre = genre;
 		this.author = author;
 		this.isbn = isbn;
-		this.publishingHouse = publishingHouse;
 	}
 
 
@@ -100,10 +99,10 @@ public class Book {
 	public void setShelf(String shelf) {
 		this.shelf = shelf;
 	}
-	public String getIsbn() {
+	public long getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(String isbn) {
+	public void setIsbn(long isbn) {
 		this.isbn = isbn;
 	}
 	public String getPublishingHouse() {
