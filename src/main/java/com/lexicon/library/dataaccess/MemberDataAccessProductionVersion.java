@@ -1,21 +1,19 @@
 package com.lexicon.library.dataaccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.lexicon.library.domain.Member;
 
 @Stateless
 //@Default
-@ProductionDao
 public class MemberDataAccessProductionVersion implements MemberDataAccess {
 
-	@PersistenceContext
+	@Inject
 	private EntityManager em;
 	
 	@Override
