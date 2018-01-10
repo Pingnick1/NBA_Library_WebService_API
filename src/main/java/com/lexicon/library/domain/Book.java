@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 
@@ -40,7 +41,7 @@ public class Book implements Serializable{
 	
 	private bookStatus status = bookStatus.AVAILABLE;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private Loan loan;
 
 	public Book() {
@@ -54,7 +55,6 @@ public class Book implements Serializable{
 		this.genre = genre;
 		this.author = author;
 		this.isbn = isbn;
-		this.publishingHouse = publishingHouse;
 	}
 
 

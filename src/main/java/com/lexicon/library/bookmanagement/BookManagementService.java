@@ -11,6 +11,6 @@ public interface BookManagementService {
   public void registerBook(Book book); 
   public List<Book> getAllBooks(); 
   public List<Book> updateBooks(); 
-  public List<Book> searchById(int id); 
+  public Book searchById(int id); 
  
 } 

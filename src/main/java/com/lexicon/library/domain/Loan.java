@@ -29,7 +29,6 @@ public class Loan {
 	private loanStatus status;
 	
 	@OneToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
-	@JoinColumn(name = "BOOKS_ID")
 	private Book books;
 	
 //	@ManyToOne(cascade=CascadeType.PERSIST)

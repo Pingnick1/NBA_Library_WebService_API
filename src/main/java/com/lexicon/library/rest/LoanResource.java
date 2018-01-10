@@ -47,6 +47,7 @@ public class LoanResource {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteLoan(int id) {
+		return null;
 		
 	}
 	
