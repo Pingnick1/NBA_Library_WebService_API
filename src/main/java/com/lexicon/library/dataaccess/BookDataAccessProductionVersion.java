@@ -1,11 +1,11 @@
 package com.lexicon.library.dataaccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /*
 import javax.persistence.EntityManager;
@@ -19,12 +19,13 @@ import com.lexicon.library.domain.Book;
 public class BookDataAccessProductionVersion implements BookDataAccess {
 
 	@PersistenceContext 
-	private EntityManager em;	
+	private EntityManager em;
 	
 	@Override
 	public void insert(Book book) {
 
 		em.persist(book);
+
 
 		
 	}
@@ -40,8 +41,12 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 
 	@Override
 	public Book findById(int id) {
-		
-		return em.find(Book.class, id);		
+		/*
+		Query q = em.createQuery("select book from Book book where book.id = :id");
+		q.getParameter(id);
+		List<Book> books = q.getResultList();
+		*/
+		return em.find(Book.class, id);
 		
 	}
 	
@@ -98,3 +103,4 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 */
 }
+>>>>>>> branch 'björnBranch' of https://github.com/Pingnick1/NBA_Library_WebService_API.git
