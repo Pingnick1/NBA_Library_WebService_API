@@ -22,5 +22,5 @@ public interface BookDataAccess {
 
 	public abstract List<Book> findByISBN(long isbn);
 
-	void deleteBook(Book book);
+	void deleteBook(int id);
 }

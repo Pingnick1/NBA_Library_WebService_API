@@ -33,17 +33,34 @@ public class Loan {
 	
 	@OneToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
 	@JoinColumn(name = "BOOK_ID")
-	@NotNull
+//	@NotNull
 	private Book book;
 	
 	public Loan() {
-		super();
 	}
+	
 	public Loan(String startDate, String endDate) {
-		super();
-		
 		this.startDate =startDate;
 		this.endDate = endDate;
+	}
+
+	
+
+	public Loan(String endDate) {
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String stringStartDate = now.format(formatter);
+		this.startDate = stringStartDate;
+		this.endDate = endDate;
+	}
+
+	
+	
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public String getStartDate() {

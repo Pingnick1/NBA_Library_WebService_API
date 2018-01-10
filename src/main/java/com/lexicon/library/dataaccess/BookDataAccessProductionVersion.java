@@ -1,7 +1,6 @@
 package com.lexicon.library.dataaccess;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -85,7 +84,8 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 		
 	}
 	@Override
-	public void deleteBook(Book book) {
+	public void deleteBook(int id) {
+		Book book = em.find(Book.class, id);
 		em.remove(book);
 	}
 
