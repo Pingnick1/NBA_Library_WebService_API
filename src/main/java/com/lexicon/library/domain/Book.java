@@ -41,7 +41,7 @@ public class Book implements Serializable{
 	
 	private bookStatus status = bookStatus.AVAILABLE;
 
-	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@OneToOne(mappedBy = "book")
 	private Loan loan;
 
 	public Book() {
@@ -165,3 +165,4 @@ public class Book implements Serializable{
 
 
 }
+

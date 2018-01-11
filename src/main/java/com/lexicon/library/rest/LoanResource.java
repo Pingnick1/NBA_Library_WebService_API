@@ -8,7 +8,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,7 +28,7 @@ public class LoanResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveLoan(Loan loan) throws URISyntaxException {
+	public Response insertLoan(Loan loan) throws URISyntaxException {
 		lda.insertLoan(loan);
 	return	Response
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
@@ -34,21 +36,31 @@ public class LoanResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllLoans(){
-		return Response.ok(lda.findAllLoan()).build();
+	
+	public Response findAllLoans(){
+		return Response.ok(lda.findAllLoans()).build();
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getidloan(int id){
+	@Path("/{id}")
+	public Response findByIdLoan(@PathParam("id") int id){
 		return Response.ok(lda.findByIdLoan(id)).build();
 	}
 	
 	@DELETE
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteLoan(int id) {
-		return null;
-		
-	}
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response deleteLoan(@PathParam("id") int id){
+        lda.deleteLoan(id);
+		//please do something here
+		return Response.ok().build();
+    }
 	
+	@PUT
+	@Path("/{loanId}/book/{bookId}")
+	public Response addBookToLoan(@PathParam("loanId") int loanId, @PathParam("bookId") int bookId) throws URISyntaxException {
+		lda.addBookToLoan(loanId, bookId);
+		return	Response.ok().build();
+	}
 }
