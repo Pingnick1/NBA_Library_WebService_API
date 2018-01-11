@@ -2,6 +2,11 @@ package com.lexicon.library.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -29,7 +34,13 @@ public class LoanResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertLoan(Loan loan) throws URISyntaxException {
+	public Response insertLoan(Loan loan) throws URISyntaxException, ParseException {
+//	public Response insertLoan(@QueryParam("d") String date) throws URISyntaxException, ParseException {
+//		String string = date;
+//		DateFormat format = new SimpleDateFormat("YYYY-MM-DD", Locale.ENGLISH);
+//		Date formattedDate = format.parse(date);
+//		Loan loan = new Loan(formattedDate, new Date(System.currentTimeMillis()));
+//		lda.insertLoan(loan);
 		lda.insertLoan(loan);
 	return	Response
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();

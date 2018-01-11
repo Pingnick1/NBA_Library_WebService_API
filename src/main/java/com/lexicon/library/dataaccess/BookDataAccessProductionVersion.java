@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.lexicon.library.domain.Book;
 
@@ -41,20 +42,21 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	@Override
 	public List<Book> findByTitle(String title) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createNativeQuery("SELECT * FROM Book b WHERE b.title LIKE ?1",Book.class);
+		q.setParameter(1, title + "%");
 		List<Book> books = q.getResultList();
-		
-		return books;		
+				return books;		
 		
 	}
 	
 	@Override
-	public List<Book> findByAuthor(String title) {
+	public List<Book> findByAuthor(String author) {
 		
-		Query q = em.createQuery("select book from Book book");
-		List<Book> books = q.getResultList();
+		Query q = em.createNativeQuery("SELECT * FROM Book b WHERE b.author LIKE ?1",Book.class);
+		q.setParameter(1, author +"%");
+		List<Book> authors = q.getResultList();
 		
-		return books;		
+		return authors;		
 		
 	}
 
@@ -69,9 +71,10 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 
 	@Override
-	public List<Book> findByISBN(long title) {
+	public List<Book> findByISBN(long isbn) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createNativeQuery("SELECT * FROM Book b WHERE b.isbn LIKE ?1",Book.class);
+		q.setParameter(1,"%"+isbn +"%");
 		List<Book> books = q.getResultList();
 		
 		return books;		

@@ -10,6 +10,8 @@ public interface BookDataAccess {
 	
 	public abstract void update(String updateColumn, String updateValue);
 	
+	public abstract void deleteBook(int id);
+	
 	public abstract List<Book> findAll();
 
 	public abstract Book findById(int id);
@@ -22,5 +24,4 @@ public interface BookDataAccess {
 
 	public abstract List<Book> findByISBN(long isbn);
 
-	void deleteBook(int id);
 }

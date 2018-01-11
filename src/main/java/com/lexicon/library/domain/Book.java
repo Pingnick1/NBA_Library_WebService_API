@@ -14,9 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Book {
-	/**
-	 * 
-	 */	
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
@@ -37,7 +35,7 @@ public class Book {
 	
 	private bookStatus status = bookStatus.AVAILABLE;
 
-	@OneToOne(mappedBy = "book")
+	@OneToOne(mappedBy = "book",cascade= CascadeType.ALL)
 	private Loan loan;
 
 	public Book() {
