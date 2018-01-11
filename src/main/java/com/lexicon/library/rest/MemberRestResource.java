@@ -26,19 +26,49 @@ public class MemberRestResource {
 		
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response savePerson(Member member) throws URISyntaxException {
+	public Response insert(Member member) throws URISyntaxException {
 		dao.insert(member);
 	return	Response
-	.created(new URI("localhost:8080/personNotes/rest/member")).build();
+	.created(new URI("localhost:8080/NBA_Library_WebService_API/rest/member")).build();
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/all")
 	public Response getAllMembers(){
 		return Response.ok(dao.findAll()).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/id/{id}")
+	public Response getMemberById(@PathParam("id") int id){
+		return Response.ok(dao.findMemberById(id)).build();
 		//return dao.getAllPerson();
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/email/{email}")
+	public Response getMemberByEmail(@PathParam("email") String email){
+		return Response.ok(dao.findMemberByEmail(email)).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/firstname/{firstName}")
+	public Response getMembersByFirstName(@PathParam("firstName") String firstName){
+		return Response.ok(dao.findMembersByFirstName(firstName)).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/surname/{surName}")
+	public Response getMembersBySurName(@PathParam("surName") String surName){
+		return Response.ok(dao.findMembersBySurName(surName)).build();
+	}
+	
+
 	/*
 	@POST
 	@Path("/{id}/note")

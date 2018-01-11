@@ -6,14 +6,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.lexicon.library.dataaccess.MemberDataAccess;
-import com.lexicon.library.dataaccess.ProductionDao;
 import com.lexicon.library.domain.Member;
 
 @Stateless
 public class MemberManagementImplementation implements MemberManagementService {
 
 	@Inject
-	@ProductionDao
 	private MemberDataAccess dao;
 	
 	@Override
@@ -28,7 +26,7 @@ public class MemberManagementImplementation implements MemberManagementService {
 
 	@Override
 	public List<Member> searchBySurname(String surName) {
-		return dao.findBySurname(surName);
+		return dao.findMembersBySurName(surName);
 	}
 
 }
