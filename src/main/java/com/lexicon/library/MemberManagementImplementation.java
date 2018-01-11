@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.lexicon.library.dataaccess.MemberDataAccess;
-import com.lexicon.library.dataaccess.ProductionDao;
 import com.lexicon.library.domain.Member;
 
 @Stateless

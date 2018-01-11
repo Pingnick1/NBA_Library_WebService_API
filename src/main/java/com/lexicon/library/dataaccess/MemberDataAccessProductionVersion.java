@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import com.lexicon.library.domain.Member;
 
 @Stateless
-//@Default
 public class MemberDataAccessProductionVersion implements MemberDataAccess {
 
 	@Inject

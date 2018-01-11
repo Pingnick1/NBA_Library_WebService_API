@@ -38,7 +38,7 @@ public class BookResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/{id}")
+	@Path("/id/{id}")
 	public Response findById(@PathParam("id") int id){
 		return Response.ok(bda.findById(id)).build();
 	}
