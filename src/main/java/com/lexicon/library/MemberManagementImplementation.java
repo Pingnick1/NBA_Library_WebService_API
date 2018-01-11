@@ -13,7 +13,6 @@ import com.lexicon.library.domain.Member;
 public class MemberManagementImplementation implements MemberManagementService {
 
 	@Inject
-	@ProductionDao
 	private MemberDataAccess dao;
 	
 	@Override
