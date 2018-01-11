@@ -26,7 +26,7 @@ public class MemberRestResource {
 		
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response savePerson(Member member) throws URISyntaxException {
+	public Response insert(Member member) throws URISyntaxException {
 		dao.insert(member);
 	return	Response
 	.created(new URI("localhost:8080/personNotes/rest/member")).build();

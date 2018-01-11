@@ -1,5 +1,7 @@
 package com.lexicon.library.domain;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Member implements java.io.Serializable {
@@ -20,9 +23,9 @@ public class Member implements java.io.Serializable {
 	private String firstName;
 	private String surName;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="loan", nullable=false)
-	private Loan loan;
+	@OneToMany(mappedBy = "member")
+	//@JoinColumn(name="loan", nullable=false)
+	private List<Loan> loan;
 	
 	public Member() {	}
 	
@@ -47,8 +50,7 @@ public class Member implements java.io.Serializable {
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "Member: " + firstName + " " + surName;

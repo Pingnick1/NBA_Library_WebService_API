@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 */
 import com.lexicon.library.domain.Book;
+import com.lexicon.library.domain.Genres;
 
 
 @Stateless
@@ -73,10 +74,10 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	}
 
 	@Override
-	public List<Book> findByGenre(String genre) {
+	public List<Book> findByGenre(Genres genre) {
 		
 		Query q = em.createQuery("select book from Book book where book.genre = :genre");
-		q.getParameter(genre);
+		q.setParameter("genre", genre);
 		List<Book> books = q.getResultList();
 		
 		return books;		

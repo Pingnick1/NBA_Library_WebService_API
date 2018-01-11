@@ -3,6 +3,8 @@ package com.lexicon.library.domain;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,7 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -31,10 +34,15 @@ public class Loan {
 	@NotNull
 	private loanStatus status = loanStatus.ACTIVE;
 	
-	@OneToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
-	@JoinColumn(name = "BOOK_ID")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="loan")
+//	@JoinColumn(name = "BOOK_ID")
 //	@NotNull
-	private Book book;
+	private Set<Book> books;
+	
+	@ManyToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
+	@JoinColumn(name = "MEMBER_ID")
+//	@NotNull
+	private Member member;
 	
 	public Loan() {
 	}
@@ -54,13 +62,8 @@ public class Loan {
 		this.endDate = endDate;
 	}
 
-	
-	
-	public Book getBook() {
-		return book;
-	}
 	public void setBook(Book book) {
-		this.book = book;
+		books.add(book);
 	}
 
 	public String getStartDate() {
@@ -81,5 +84,13 @@ public class Loan {
 	public void setStatus(loanStatus status) {
 		this.status = status;
 	}
+
+	public Member getMember() {
+		return member;
+	}
+	
+	public void setMember(Member member) {
+		this.member = member;
+	}	
 	
 }

@@ -28,8 +28,9 @@ public class LoanResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertLoan(Loan loan) throws URISyntaxException {
-		lda.insertLoan(loan);
+	@Path("/member/{memberId}")
+	public Response insertLoan(Loan loan, @PathParam("memberId") int memberId) throws URISyntaxException {
+		lda.insertLoan(loan, memberId);
 	return	Response
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
 	}
@@ -63,4 +64,12 @@ public class LoanResource {
 		lda.addBookToLoan(loanId, bookId);
 		return	Response.ok().build();
 	}
+	/*
+	@DELETE
+	@Path("/{loanId}/book/{bookId}")
+	public Response RemoveBookToLoan(@PathParam("loanId") int loanId, @PathParam("bookId") int bookId) throws URISyntaxException {
+		lda.addBookToLoan(loanId, bookId);
+		return	Response.ok().build();
+	}
+	*/
 }

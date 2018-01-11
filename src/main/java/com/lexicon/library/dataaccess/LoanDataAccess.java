@@ -7,7 +7,7 @@ import com.lexicon.library.domain.Loan;
 
 public interface LoanDataAccess {
 
-	void insertLoan(Loan loan);
+	void insertLoan(Loan loan, int memberId);
 
 	List<Loan> findAllLoans();
 

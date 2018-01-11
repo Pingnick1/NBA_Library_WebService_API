@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.lexicon.library.domain.Book;
 import com.lexicon.library.domain.Loan;
+import com.lexicon.library.domain.Member;
 
 @Stateless
 public class LoanDataAccessProductionVersion implements LoanDataAccess{
@@ -20,8 +21,11 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 	 * @see com.lexicon.library.dataaccess.LoanDataAccess#insertLoan(com.lexicon.library.domain.Loan)
 	 */
 	@Override
-	public void insertLoan(Loan loan) {
+	public void insertLoan(Loan loan, int memberId) {
+		Member member = new Member("MAttias", "Svensson"); 
+				//em.find(Member.class, memberId);
 		em.persist(loan);
+		loan.setMember(member);
 
 	}
 	
@@ -62,8 +66,11 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 		Loan loan = em.find(Loan.class, loanId);
 		Book book=em.find(Book.class, bookId);
 		loan.setBook(book);
+		book.setLoan(loan);
 		//fuckbook.setLoan(loan);
+		em.merge(book);
 		em.merge(loan);
+		
 		//em.merge(book);
 	}
 

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -41,9 +42,11 @@ public class Book implements Serializable{
 	
 	private bookStatus status = bookStatus.AVAILABLE;
 
-	@OneToOne(mappedBy = "book")
+	@ManyToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
+	@JoinColumn(name = "LOAN_ID", nullable=true)
 	private Loan loan;
-
+	
+	
 	public Book() {
 
 	}
