@@ -30,7 +30,9 @@ public class Loan {
 	private int id;
 	
 	private Date startDate;
+	@NotNull
 	private Date endDate;
+	
 	@NotNull
 	private loanStatus status = loanStatus.ACTIVE;
 	
@@ -48,16 +50,15 @@ public class Loan {
 	}
 	
 	public Loan(Date startDate,Date endDate) {
-		this.startDate =startDate;
+		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
 	
 
 	public Loan(Date endDate) {
-//		Date date = new java.sql.Date(System.currentTimeMillis());
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		String stringStartDate = now.format(formatter);
+		Date now = new Date();
+		this.startDate = now;
 		this.endDate = endDate;
 	}
 

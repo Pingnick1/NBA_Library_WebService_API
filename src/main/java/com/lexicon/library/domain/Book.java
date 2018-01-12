@@ -42,7 +42,7 @@ public class Book {
 	
 	private bookStatus status = bookStatus.AVAILABLE;
 
-	@ManyToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.DETACH , fetch=FetchType.EAGER)
 	@JoinColumn(name = "LOAN_ID", nullable=true)
 	private Loan loan;
 	

@@ -29,7 +29,12 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book
+ * @param book
+ * @return
+ * @throws URISyntaxException
+ */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insert(Book book) throws URISyntaxException {
@@ -46,7 +51,11 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
+ * @param id
+ * @return
+ */
 	@DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/id/{id}")
@@ -59,7 +68,10 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/
+ * @return
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllBooks(){
@@ -68,7 +80,11 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/
+ * @param id
+ * @return
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/id/{id}")
@@ -77,12 +93,17 @@ public class BookResource {
 	}
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/title	
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/title	
+ * @param title
+ * @return
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/title/{title}")
 	public Response findByTitle(@PathParam("title") String title){
 		return Response.ok(bda.findByTitle(title)).build();
+		}
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/genre/{genre}")
@@ -90,13 +111,7 @@ public class BookResource {
 		return Response.ok(bda.findByGenre(genre)).build();
 	}
 	
-	@DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
-    public Response delete(@PathParam("id") int id){
-        bda.deleteBook(id);
-		return Response.ok().build();	
-	}
+
 	
 //	@GET
 //	@Produces(MediaType.APPLICATION_JSON)
@@ -109,7 +124,11 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/author/{author}
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/author/{author}
+ * @param author
+ * @return
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/author/{author}")
@@ -119,7 +138,11 @@ public class BookResource {
 	
 	
 	
-//	http://localhost:8080/NBA_Library_WebService_API/rest/book/isbn/{isbn}
+/**
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/isbn/{isbn}
+ * @param isbn
+ * @return
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/isbn/{isbn}")

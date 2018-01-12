@@ -49,6 +49,8 @@ public class MemberRestResource {
 	/**---------------------------------
 	* Find Member By Id
 	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/<id>
+	* param id
+	* param string
 	*----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

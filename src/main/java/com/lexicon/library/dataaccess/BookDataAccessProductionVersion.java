@@ -24,7 +24,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	@PersistenceContext 
 	private EntityManager em;
 	
-//	Create new book
+/**
+ * 	Create new book
+ */
 	@Override
 	public void insert(Book book) {
 
@@ -34,7 +36,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	
 	
 	
-//	Get all books
+/**
+ * 	Get all books
+ */
 	@Override
 	public List<Book> findAll() {
 
@@ -46,7 +50,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 		return books;
 		}
 
-//	Find book by Id
+/**
+ * 	Find book by Id
+ */
 	@Override
 	public Book findById(int id) {
 
@@ -55,7 +61,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 		
 	}
 
-//	Find book by title
+/**
+ * 	Find book by title
+ */
 	@Override
 	public List<Book> findByTitle(String title) {
 		
@@ -65,7 +73,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 				return books;	
 				}
 	
-//	Find book by author 
+/**
+ * 	Find book by author 
+ */
 	@Override
 	public List<Book> findByAuthor(String author) {
 		
@@ -78,7 +88,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 
 	
 	
-//Find book by genre "not working for now in "
+/**
+ * Find book by genre
+ */
 	@Override
 	public List<Book> findByGenre(Genres genre) {
 		
@@ -91,7 +103,9 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 
 	
 	
-//	Find book by isbn
+/**
+ * 	Find book by isbn
+ */
 	@Override
 	public List<Book> findByISBN(long isbn) {
 		
@@ -104,15 +118,20 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 
 
 	
-//	Update book"not working for now"
+/**
+ * 	Update book"not working for now"
+ */
+	/*
 	@Override
 	public void update(String updateColumn, String updateValue) {
 		// TODO Auto-generated method stub
 		}
 	
+	*/
 	
-	
-//	Delete book by getting Id
+/**
+ * 	Delete book by getting Id
+ */
 	@Override
 	public void deleteBook(int id) {
 		Book book = em.find(Book.class, id);
