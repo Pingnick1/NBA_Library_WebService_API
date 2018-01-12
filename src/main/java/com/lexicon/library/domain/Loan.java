@@ -1,9 +1,7 @@
 package com.lexicon.library.domain;
 
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,37 +23,52 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String startDate;
-	private String endDate;
-//	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+	private Date startDate;
+	private Date endDate;
 	@NotNull
 	private loanStatus status = loanStatus.ACTIVE;
 	
 	@OneToOne(cascade = CascadeType.ALL , fetch=FetchType.EAGER)
 	@JoinColumn(name = "BOOK_ID")
-	@NotNull
+//	@NotNull
 	private Book book;
 	
 	public Loan() {
-		super();
 	}
-	public Loan(String startDate, String endDate) {
-		super();
-		
+	
+	public Loan(Date startDate,Date endDate) {
 		this.startDate =startDate;
 		this.endDate = endDate;
 	}
 
-	public String getStartDate() {
+	
+
+	public Loan(Date endDate) {
+//		Date date = new java.sql.Date(System.currentTimeMillis());
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		String stringStartDate = now.format(formatter);
+		this.endDate = endDate;
+	}
+
+	
+	
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public loanStatus getStatus() {

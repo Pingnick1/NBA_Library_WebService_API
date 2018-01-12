@@ -2,15 +2,22 @@ package com.lexicon.library.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -24,10 +31,22 @@ public class LoanResource {
 	
 	@Inject
 	LoanDataAccess lda;
+
 	
+	
+	
+	
+	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertLoan(Loan loan) throws URISyntaxException {
+	public Response insertLoan(Loan loan) throws URISyntaxException, ParseException {
+//	public Response insertLoan(@QueryParam("d") String date) throws URISyntaxException, ParseException {
+//		String string = date;
+//		DateFormat format = new SimpleDateFormat("YYYY-MM-DD", Locale.ENGLISH);
+//		Date formattedDate = format.parse(date);
+//		Loan loan = new Loan(formattedDate, new Date(System.currentTimeMillis()));
+//		lda.insertLoan(loan);
 		lda.insertLoan(loan);
 	return	Response
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
@@ -48,12 +67,18 @@ public class LoanResource {
 	}
 	
 	@DELETE
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response deleteLoan(@PathParam("id") int id){
-            return Response.status(200)
-                           .entity("Book is deleted").build();
+        lda.deleteLoan(id);
+		//please do something here
+		return Response.ok().build();
     }
 	
+	@PUT
+	@Path("/{loanId}/book/{bookId}")
+	public Response addBookToLoan(@PathParam("loanId") int loanId, @PathParam("bookId") int bookId) throws URISyntaxException {
+		lda.addBookToLoan(loanId, bookId);
+		return	Response.ok().build();
+	}
 }

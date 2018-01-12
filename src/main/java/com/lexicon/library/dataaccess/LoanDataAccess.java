@@ -6,16 +6,16 @@ import com.lexicon.library.domain.Loan;
 
 public interface LoanDataAccess {
 
-	
 	void insertLoan(Loan loan);
-
 	
 	List<Loan> findAllLoans();
 
-
 	Loan findByIdLoan(int id);
 
+	void deleteLoan(int id);
 
-	void deleteLoan(Loan loan);
+	void addBookToLoan(int loanId, int bookId);
+
+	
 
 }
