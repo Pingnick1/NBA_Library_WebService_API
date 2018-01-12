@@ -22,9 +22,11 @@ public class MemberRestResource {
 	@Inject
 	MemberDataAccess dao;
 	
-	//---------------------------------
-	// Create Member
-	//---------------------------------
+	/**---------------------------------
+	* Create Member
+	* POST http://<adress>:<port>/NBA_Library_WebService_API/rest/member
+	* JSON: {"firstName":"<firstname>", "surName":"<lastname>", "email":"<email>"}
+	*----------------------------------*/
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insert(Member member) throws URISyntaxException {
@@ -33,9 +35,10 @@ public class MemberRestResource {
 	.created(new URI("localhost:8080/NBA_Library_WebService_API/rest/member")).build();
 	}
 	
-	//---------------------------------
-	// Get All Members
-	//---------------------------------
+	/**---------------------------------
+	* Get All Members
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/all
+	*----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/all")
@@ -43,9 +46,10 @@ public class MemberRestResource {
 		return Response.ok(dao.findAll()).build();
 	}
 	
-	//---------------------------------
-	// Find Member By Id
-	//---------------------------------
+	/**---------------------------------
+	* Find Member By Id
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/<id>
+	*----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/id/{id}")
@@ -53,9 +57,10 @@ public class MemberRestResource {
 		return Response.ok(dao.findMemberById(id)).build();
 	}
 	
-	//---------------------------------
-	// Find Member By Email
-	//---------------------------------
+	/**---------------------------------
+	* Find Member By Email
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/email/<email>
+	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/email/{email}")
@@ -63,9 +68,10 @@ public class MemberRestResource {
 		return Response.ok(dao.findMemberByEmail(email)).build();
 	}
 	
-	//---------------------------------
-	// Find Members by firstName
-	//---------------------------------
+	/**---------------------------------
+	* Find Members by firstName
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/<firstname>
+	*----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/firstname/{firstName}")
@@ -73,9 +79,10 @@ public class MemberRestResource {
 		return Response.ok(dao.findMembersByFirstName(firstName)).build();
 	}
 	
-	//---------------------------------
-	// Find Members by surName
-	//---------------------------------
+	/**---------------------------------
+	* Find Members by surName
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/surname/<surname>
+	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/surname/{surName}")
@@ -83,5 +90,4 @@ public class MemberRestResource {
 		return Response.ok(dao.findMembersBySurName(surName)).build();
 	}
 		
-
 }

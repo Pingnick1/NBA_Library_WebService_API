@@ -1,3 +1,7 @@
+/**
+ * 	Member DAO Interface
+ */
+
 package com.lexicon.library.dataaccess;
 
 import java.util.List;

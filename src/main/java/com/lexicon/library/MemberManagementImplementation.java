@@ -1,3 +1,8 @@
+/**
+ * 	Deprecated Class and not used.
+ * 
+ */
+
 package com.lexicon.library;
 
 import java.util.List;

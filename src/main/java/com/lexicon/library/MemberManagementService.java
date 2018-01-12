@@ -1,3 +1,7 @@
+/**
+ * 	Deprecated Class Interface
+ */
+
 package com.lexicon.library;
 
 import java.util.List;
