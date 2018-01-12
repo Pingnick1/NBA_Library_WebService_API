@@ -33,7 +33,7 @@ public class Book {
 	private Genres genre;
 	@NotNull
 	private String author;
-	private String shelf = "Unknown";
+	private String shelf;
 	@NotNull
 	private long isbn;
 	private String publishingHouse;
@@ -52,11 +52,12 @@ public class Book {
 	}
 
 
-	public Book(String title, Genres genre, String author,
+	public Book(String title, Genres genre, String author, String shelf,
 			long isbn) {
 		this.title = title;
 		this.genre = genre;
 		this.author = author;
+		this.shelf = shelf;
 		this.isbn = isbn;
 	}
 
@@ -71,9 +72,9 @@ public class Book {
 	}
 
 
-	public Loan getLoan() {
-		return loan;
-	}
+//	public Loan getLoan() {
+//		return loan;
+//	}
 
 
 	public void setLoan(Loan loan) {

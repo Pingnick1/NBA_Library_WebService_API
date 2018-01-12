@@ -1,6 +1,1 @@
-com.lexicon.library
-com.lexicon.library.dataaccess
 com.lexicon.library.domain
-com.lexicon.library.rest
-com.lexicon.library.tests
-org.jboss.tools.examples.util

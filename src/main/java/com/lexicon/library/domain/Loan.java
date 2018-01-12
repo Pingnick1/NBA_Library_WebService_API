@@ -29,9 +29,10 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private Date startDate;
-	@NotNull
-	private Date endDate;
+	//@NotNull
+	private LocalDate startDate;
+//	@DateTimeFormat(SimpleDate)
+	private LocalDate endDate;
 	
 	@NotNull
 	private loanStatus status = loanStatus.ACTIVE;
@@ -45,37 +46,40 @@ public class Loan {
 	@JoinColumn(name = "MEMBER_ID")
 //	@NotNull
 	private Member member;
-	
+
 	public Loan() {
 	}
-	
-	public Loan(Date startDate,Date endDate) {
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
 
-	
-
-	public Loan(Date endDate) {
-		Date now = new Date();
+	public Loan(String endDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+		LocalDate now = LocalDate.now();
 		this.startDate = now;
-		this.endDate = endDate;
+		this.endDate = LocalDate.parse(endDate.substring(0, 10), formatter);
 	}
+
+	public Loan(String startDate, String endDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+		this.startDate = LocalDate.parse(startDate.substring(0, 10), formatter);
+		this.endDate = LocalDate.parse(endDate.substring(0, 10), formatter);
+	}
+
+	
+
 
 	public void setBook(Book book) {
 		books.add(book);
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 	public loanStatus getStatus() {
@@ -85,9 +89,9 @@ public class Loan {
 		this.status = status;
 	}
 
-	public Member getMember() {
-		return member;
-	}
+//	public Member getMember() {
+//		return member;
+//	}
 	
 	public void setMember(Member member) {
 		this.member = member;

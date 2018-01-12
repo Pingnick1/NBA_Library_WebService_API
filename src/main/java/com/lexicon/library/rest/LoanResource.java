@@ -39,14 +39,28 @@ public class LoanResource {
 
 	
 	/** 
-	 * Find a specific Loan with id as parameter.
+	 * Create a new Loan with a specific end date, and connect to a specific member.
 	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/member/{memberId}
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/member/{memberId}")
-	public Response insertLoan(Loan loan, @PathParam("memberId") int memberId) throws URISyntaxException {
-		lda.insertLoan(loan, memberId);
+	@Path("/memberid/{memberId}/enddate/{endDate}")
+	public Response insertLoan(@PathParam("endDate") String endDate, @PathParam("memberId") int memberId) throws URISyntaxException {
+		lda.insertLoan(endDate, memberId);
+	return	Response
+	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
+	}
+
+	/** 
+	 * Create a new Loan with a specific end date, and connect to a specific member.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/member/{memberId}
+	 */
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/memberid/{memberId}")
+	public Response insertLoan(@PathParam("memberId") int memberId) throws URISyntaxException {
+		
+		lda.insertLoan(memberId);
 	return	Response
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
 	}

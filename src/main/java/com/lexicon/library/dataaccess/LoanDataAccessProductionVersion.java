@@ -1,5 +1,6 @@
 package com.lexicon.library.dataaccess;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -21,7 +22,24 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 	 * Insert a loan, and connect it to a an existing member in the database.
 	 */
 	@Override
-	public void insertLoan(Loan loan, int memberId) {
+	public void insertLoan(int memberId) {
+		LocalDate now = LocalDate.now();
+		LocalDate endDate = LocalDate.now().plusDays(40);
+		
+		Loan loan = new Loan(endDate.toString());
+		
+		Member member = em.find(Member.class, memberId);
+		em.persist(loan);
+		loan.setMember(member);
+
+	}
+	
+	/** 
+	 * Insert a loan with a specific end date, and connect it to a an existing member in the database.
+	 */
+	@Override
+	public void insertLoan(String endDate, int memberId) {
+		Loan loan = new Loan(endDate);
 		Member member = em.find(Member.class, memberId);
 		em.persist(loan);
 		loan.setMember(member);

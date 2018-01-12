@@ -32,9 +32,9 @@ public class Member {
 	//@JoinColumn(name="LOAN_ID", nullable=true)
 	private Set<Loan> loan;
 	
-	public Set<Loan> getLoan() {
-		return loan;
-	}
+//	public Set<Loan> getLoan() {
+//		return loan;
+//	}
 
 	public void setLoan(Set<Loan> loan) {
 		this.loan = loan;
