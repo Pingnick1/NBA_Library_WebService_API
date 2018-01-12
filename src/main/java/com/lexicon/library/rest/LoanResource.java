@@ -31,7 +31,13 @@ public class LoanResource {
 	
 	@Inject
 	LoanDataAccess lda;
+
 	
+	
+	
+	
+	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insertLoan(Loan loan) throws URISyntaxException, ParseException {

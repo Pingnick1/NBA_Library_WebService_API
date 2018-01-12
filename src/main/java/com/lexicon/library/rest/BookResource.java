@@ -24,6 +24,11 @@ public class BookResource {
 	@Inject
 	BookDataAccess bda;
 	
+	
+	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response insert(Book book) throws URISyntaxException {
@@ -38,20 +43,31 @@ public class BookResource {
 //	return	Response.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/book")).build();
 //	}
 	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
 	@DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("/id/{id}")
     public Response delete(@PathParam("id") int id){
         bda.deleteBook(id);
 		return Response.ok().build();	
 	}
 	
+	
+	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllBooks(){
 		return Response.ok(bda.findAll()).build();
 	}
 	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/id/{id}")
@@ -59,6 +75,8 @@ public class BookResource {
 		return Response.ok(bda.findById(id)).build();
 	}
 	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/title	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/title/{title}")
@@ -73,6 +91,11 @@ public class BookResource {
 //		return Response.ok(bda.findByGenre(id)).build();
 //	}
 	
+	
+	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/author/{author}
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/author/{author}")
@@ -80,6 +103,9 @@ public class BookResource {
 		return Response.ok(bda.findByAuthor(author)).build();
 	}
 	
+	
+	
+//	http://localhost:8080/NBA_Library_WebService_API/rest/book/isbn/{isbn}
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/isbn/{isbn}")
