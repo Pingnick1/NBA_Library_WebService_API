@@ -72,7 +72,8 @@ public class MemberRestResource {
 	
 	/**---------------------------------
 	* Find Members by firstName
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/<firstname>
+	* @param firstname
+	* {@code} GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/<firstname>
 	*----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

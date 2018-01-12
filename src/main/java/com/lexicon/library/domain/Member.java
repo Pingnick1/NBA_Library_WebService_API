@@ -36,10 +36,18 @@ public class Member {
 //		return loan;
 //	}
 
+	/**
+	 * Set loan
+	 * @param loan
+	 */
 	public void setLoan(Set<Loan> loan) {
 		this.loan = loan;
 	}
 
+	/**
+	 * Get member id
+	 * @return MemberId
+	 */
 	public Integer getId() {
 		return id;
 	}
@@ -48,6 +56,13 @@ public class Member {
 		
 	}		// Required empty constructor
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param firstName
+	 * @param surName
+	 * @param email
+	 */
 	public Member(String firstName, String surName, String email) {
 		super();
 
@@ -56,28 +71,58 @@ public class Member {
 		this.email = email;
 	}
 
+	/**
+	 * 
+	 * @return Firstname
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
+	
+	/**
+	 * Set firstname
+	 * @param firstName
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+	/**
+	 * Get surname
+	 * @return String surname
+	 */
 	public String getSurName() {
 		return surName;
 	}
+	
+	/**
+	 * Set surname
+	 * @param surName String with surname
+	 */
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
 	
+	/**
+	 * Return email
+	 * @return email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Set email
+	 * @param email E-mail adress
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	@Override
+	/**
+	 * @return String
+	 */
+	@Override	
 	public String toString() {
 		return "Member: " + firstName + " " + surName + ", " + email;
 	}

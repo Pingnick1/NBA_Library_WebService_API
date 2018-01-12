@@ -17,6 +17,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	
 	/**
 	 * 	Create new member.
+	 * 	@param New Member
+	 * 
 	 */
 	@Override
 	public void insert(Member newMember) {
@@ -24,8 +26,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	}
 
 	/**
-	 * Get all members.
-	 * 
+	 * @Get all members.
+	 * @return List of all Members.
 	 */
 	@Override
 	public List<Member> findAll() {
@@ -35,6 +37,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	
 	/**
 	 * 	Find member by ID
+	 * 	@param Member Id
+	 * 	@return	Member
 	 */
 	@Override
 	public Member findMemberById(int id) {
@@ -43,6 +47,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	
 	/**
 	 * 	Find member by Email
+	 * @param email
+	 * @return Member that matches email
 	 */
 	@Override
 	public Member findMemberByEmail(String email) {
@@ -53,7 +59,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 
 	/**
 	 * 	Find members by firstname
-	 * 	param String 
+	 * 	@param firstname
+	 *  @return List of Member
 	 */
 	@Override
 	public List<Member> findMembersByFirstName(String firstName) {
@@ -64,6 +71,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	
 	/**
 	 *  Find members by lastname.
+	 *  @param surname
+	 *  @return	List of Members
 	 */
 	@Override
 	public List<Member> findMembersBySurName(String surName) {
