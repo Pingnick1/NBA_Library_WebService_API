@@ -17,20 +17,19 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 	@Inject
 	private EntityManager em;
 	
-	/* (non-Javadoc)
-	 * @see com.lexicon.library.dataaccess.LoanDataAccess#insertLoan(com.lexicon.library.domain.Loan)
+	/** 
+	 * Insert a loan, and connect it to a an existing member in the database.
 	 */
 	@Override
 	public void insertLoan(Loan loan, int memberId) {
-		Member member = new Member("MAttias", "Svensson"); 
-				//em.find(Member.class, memberId);
+		Member member = em.find(Member.class, memberId);
 		em.persist(loan);
 		loan.setMember(member);
 
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.lexicon.library.dataaccess.LoanDataAccess#findAllLoans()
+	/** 
+	 * Get all the loans from the database.
 	 */
 	@Override
 	public List<Loan> findAllLoans() {
@@ -40,8 +39,8 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 		return Loans;
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.lexicon.library.dataaccess.LoanDataAccess#findByIdLoan(int)
+	/** 
+	 * Find a specific Loan with id as parameter.
 	 */
 	@Override
 	public Loan findByIdLoan(int id) {
@@ -50,16 +49,17 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 		
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.lexicon.library.dataaccess.LoanDataAccess#deleteLoan(int)
+	/**
+	 * Delete a specific Loan with id as parameter.
 	 */
 	@Override
 	public void deleteLoan(int id) {
 		Loan loan = em.find(Loan.class, id);
 		em.remove(loan);
 	}
-	/* (non-Javadoc)
-	 * @see com.lexicon.library.dataaccess.LoanDataAccess#addBookToLoan(int, int)
+	
+	/**
+	 * Add a specific book to a specific loan using their IDs as parameters. Multiple books can be set to a loan.
 	 */
 	@Override
 	public void addBookToLoan(int loanId,int bookId) {
@@ -67,7 +67,6 @@ public class LoanDataAccessProductionVersion implements LoanDataAccess{
 		Book book=em.find(Book.class, bookId);
 		loan.setBook(book);
 		book.setLoan(loan);
-		//fuckbook.setLoan(loan);
 		em.merge(book);
 		em.merge(loan);
 		

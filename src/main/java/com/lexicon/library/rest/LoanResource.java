@@ -18,7 +18,13 @@ import javax.ws.rs.core.Response;
 import com.lexicon.library.dataaccess.LoanDataAccess;
 import com.lexicon.library.domain.Loan;
 
-
+/** 
+ * This resource takes in JSON Strings. Example:
+ * To make startDate the current date:
+ * {"endDate":"2017-12-09"}
+ *  * to set your own startDate:
+ * {"startDate":"2017-12-09", "endDate":"2017-12-09"}
+ */
 @Path("/loan")
 public class LoanResource {
 
@@ -26,6 +32,10 @@ public class LoanResource {
 	@Inject
 	LoanDataAccess lda;
 	
+	/** 
+	 * Find a specific Loan with id as parameter.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/member/{memberId}
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/member/{memberId}")
@@ -35,13 +45,21 @@ public class LoanResource {
 	.created(new URI("http://localhost:8080/NBA_Library_WebService_API/rest/loan")).build();
 	}
 	
+	/** 
+	 * Get all the loans from the database.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	
 	public Response findAllLoans(){
 		return Response.ok(lda.findAllLoans()).build();
 	}
-	
+
+	/** 
+	 * Find a specific Loan with id as parameter.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/{id}
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
@@ -49,6 +67,10 @@ public class LoanResource {
 		return Response.ok(lda.findByIdLoan(id)).build();
 	}
 	
+	/**
+	 * Delete a specific Loan with id as parameter.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/{id}
+	 */	
 	@DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
@@ -58,6 +80,10 @@ public class LoanResource {
 		return Response.ok().build();
     }
 	
+	/**
+	 * Add a specific book to a specific loan using their IDs as parameters. Multiple books can be set to a loan.
+	 * http://<adress>:<port>/NBA_Library_WebService_API/rest/loan/{loanId}/book/{bookId}
+	 */
 	@PUT
 	@Path("/{loanId}/book/{bookId}")
 	public Response addBookToLoan(@PathParam("loanId") int loanId, @PathParam("bookId") int bookId) throws URISyntaxException {
