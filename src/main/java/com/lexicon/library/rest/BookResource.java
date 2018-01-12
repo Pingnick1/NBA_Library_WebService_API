@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 
 import com.lexicon.library.dataaccess.BookDataAccess;
 import com.lexicon.library.domain.Book;
+import com.lexicon.library.domain.Genres;
 
 @Path("/book")
 public class BookResource {
@@ -82,6 +83,19 @@ public class BookResource {
 	@Path("/title/{title}")
 	public Response findByTitle(@PathParam("title") String title){
 		return Response.ok(bda.findByTitle(title)).build();
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/genre/{genre}")
+	public Response findByGenre(@PathParam("genre") Genres genre){
+		return Response.ok(bda.findByGenre(genre)).build();
+	}
+	
+	@DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response delete(@PathParam("id") int id){
+        bda.deleteBook(id);
+		return Response.ok().build();	
 	}
 	
 //	@GET

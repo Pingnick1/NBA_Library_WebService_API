@@ -12,6 +12,7 @@ import com.lexicon.library.domain.Member;
 
 @Local
 public interface MemberDataAccess {
+	
 	public void insert(Member newMember);
 	
 	public Member findMemberById(int id);

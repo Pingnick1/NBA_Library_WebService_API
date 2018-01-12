@@ -1,5 +1,6 @@
 package com.lexicon.library.dataaccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,19 +9,25 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+/*
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+*/
 import com.lexicon.library.domain.Book;
+import com.lexicon.library.domain.Genres;
 
 
 @Stateless
-//@Alternative
 public class BookDataAccessProductionVersion implements BookDataAccess {
 
-	@PersistenceContext
-	private EntityManager em;	
+	@PersistenceContext 
+	private EntityManager em;
 	
 //	Create new book
 	@Override
 	public void insert(Book book) {
+
 		em.persist(book);
 		}
 
@@ -30,20 +37,23 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 //	Get all books
 	@Override
 	public List<Book> findAll() {
-		Query q = em.createQuery("select * from Book");
+
+		Query q = em.createQuery("select book from Book book");
+
+
 		List<Book> books = q.getResultList();
-		
+
 		return books;
 		}
 
 //	Find book by Id
 	@Override
 	public Book findById(int id) {
+
 		
 		return em.find(Book.class, id);		
-		}
-	
-	
+		
+	}
 
 //	Find book by title
 	@Override
@@ -70,9 +80,10 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 	
 //Find book by genre "not working for now in "
 	@Override
-	public List<Book> findByGenre(String title) {
+	public List<Book> findByGenre(Genres genre) {
 		
-		Query q = em.createQuery("select book from Book book");
+		Query q = em.createQuery("select book from Book book where book.genre = :genre");
+		q.setParameter("genre", genre);
 		List<Book> books = q.getResultList();
 		
 		return books;		
@@ -108,4 +119,6 @@ public class BookDataAccessProductionVersion implements BookDataAccess {
 		em.remove(book);
 	}
 
+
 }
+
