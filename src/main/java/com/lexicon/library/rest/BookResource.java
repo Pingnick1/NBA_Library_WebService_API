@@ -38,7 +38,7 @@ public class BookResource {
  *   "isbn": "9781442359949"
  * 	and inserts it into the Database.
  * 
- *  POST-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book
+ *  POST-URI: /NBA_Library_WebService_API/rest/book
  *  
  * @return Response.Created
  * * @throws URISyntaxException
@@ -63,7 +63,7 @@ public class BookResource {
  * Deletes a Book with the book's id as parameter.
  * 	and inserts it into the Database.
  * 
- *  DELETE-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
+ *  DELETE-URI: /NBA_Library_WebService_API/rest/book/id/{id}
  * @param id
  * @return Response.ok()
  */
@@ -82,7 +82,7 @@ public class BookResource {
 /**
  * Gets all the books from the Database.
  * 
- * 	Get-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book/
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/
  * @return Response.ok()
  */
 	@GET
@@ -96,7 +96,7 @@ public class BookResource {
 /**
  * Finds a Book with the book's id as parameter.
  * 	and inserts it into the Database.
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/id/{id}
  * @param id
  * @return Response.ok()
  */
@@ -111,7 +111,7 @@ public class BookResource {
 /**
  * Finds a Book with the book's title as parameter. Might return multiple books.
  * 	and inserts it into the Database.
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/title/{title}
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/title/{title}
  * @param title
  * @return Response.ok()
  */
@@ -125,7 +125,7 @@ public class BookResource {
  * Finds a Book with the book's genre as parameter.
  *  Might return multiple books.
  *  genre needs to exist in the database.
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/genre/{genre}
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/genre/{genre}
  * @param genre
  * @return Response.ok()
  */
@@ -153,7 +153,7 @@ public class BookResource {
 /**
  * Finds a Book with the book's author as parameter.
  *  Might return multiple books.
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/author/{author}
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/author/{author}
  * @param author
  * @return Response.ok()
  */
@@ -170,7 +170,7 @@ public class BookResource {
 /**
  * Finds a Book with the book's author as parameter.
  *  Might return multiple books.
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/isbn/{isbn}
+ * 	Get-URI: /NBA_Library_WebService_API/rest/book/isbn/{isbn}
  * @param isbn
  * @return Response.ok()
  */
