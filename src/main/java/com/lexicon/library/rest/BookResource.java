@@ -30,10 +30,18 @@ public class BookResource {
 	
 	
 /**
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book
- * @param book
- * @return
- * @throws URISyntaxException
+ * Constructs a Book with the given values:
+ *  Example:
+ *   "title": "Waking Up: A Guide to Spirituality Without Religion",
+ *   "genre": "SPIRITUALITY",
+ *   "author": "Sam Harris",
+ *   "isbn": "9781442359949"
+ * 	and inserts it into the Database.
+ * 
+ *  POST-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book
+ *  
+ * @return Response.Created
+ * * @throws URISyntaxException
  */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -52,9 +60,12 @@ public class BookResource {
 	
 	
 /**
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
+ * Deletes a Book with the book's id as parameter.
+ * 	and inserts it into the Database.
+ * 
+ *  DELETE-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
  * @param id
- * @return
+ * @return Response.ok()
  */
 	@DELETE
     @Consumes(MediaType.APPLICATION_JSON)
@@ -69,8 +80,10 @@ public class BookResource {
 	
 	
 /**
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/
- * @return
+ * Gets all the books from the Database.
+ * 
+ * 	Get-URL: http://localhost:8080/NBA_Library_WebService_API/rest/book/
+ * @return Response.ok()
  */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -81,9 +94,11 @@ public class BookResource {
 	
 	
 /**
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/
+ * Finds a Book with the book's id as parameter.
+ * 	and inserts it into the Database.
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/id/{id}
  * @param id
- * @return
+ * @return Response.ok()
  */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -94,9 +109,11 @@ public class BookResource {
 	
 	
 /**
- * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/title	
+ * Finds a Book with the book's title as parameter. Might return multiple books.
+ * 	and inserts it into the Database.
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/title/{title}
  * @param title
- * @return
+ * @return Response.ok()
  */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -104,6 +121,15 @@ public class BookResource {
 	public Response findByTitle(@PathParam("title") String title){
 		return Response.ok(bda.findByTitle(title)).build();
 		}
+/**
+ * Finds a Book with the book's genre as parameter.
+ *  Might return multiple books.
+ *  genre needs to exist in the database.
+ * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/genre/{genre}
+ * @param genre
+ * @return Response.ok()
+ */
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/genre/{genre}")
@@ -125,10 +151,13 @@ public class BookResource {
 	
 	
 /**
+ * Finds a Book with the book's author as parameter.
+ *  Might return multiple books.
  * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/author/{author}
  * @param author
- * @return
+ * @return Response.ok()
  */
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/author/{author}")
@@ -137,11 +166,13 @@ public class BookResource {
 	}
 	
 	
-	
+
 /**
+ * Finds a Book with the book's author as parameter.
+ *  Might return multiple books.
  * 	http://localhost:8080/NBA_Library_WebService_API/rest/book/isbn/{isbn}
  * @param isbn
- * @return
+ * @return Response.ok()
  */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
