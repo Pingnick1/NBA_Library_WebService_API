@@ -24,4 +24,7 @@ public interface MemberDataAccess {
 	public List<Member> findMembersBySurName(String surName);
 	
 	public List<Member> findMembersByFirstName(String firstName);
+
+	public List<Member> findMember(String criteria);
+
 }

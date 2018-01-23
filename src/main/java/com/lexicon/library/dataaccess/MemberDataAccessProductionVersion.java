@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.lexicon.library.domain.Member;
@@ -78,6 +79,24 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	public List<Member> findMembersBySurName(String surName) {
 		TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.surName LIKE ?1", Member.class);
 		query.setParameter(1, "%" + surName + "%");
+		return query.getResultList();
+	}
+
+	
+	/**
+	 *  Find members by firstName, surName or email.
+	 *  @param criteria
+	 *  @return	List of Members
+	 */
+	@Override
+	public List<Member> findMember(String criteria) {
+		//TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.firstName LIKE ?1 OR m.surName LIKE ?1 OR m.email LIKE ?1 ", Member.class);
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.firstName LIKE ?1 OR m.surName LIKE ?1 OR m.email LIKE ?1 ", Member.class);
+		
+		query.setParameter(1, "%" + criteria + "%");
+		//query.setParameter(2, "%" + criteria + "%");
+		//query.setParameter(3, "%" + criteria + "%");
+		
 		return query.getResultList();
 	}
 	

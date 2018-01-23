@@ -74,7 +74,7 @@ public class MemberRestResource {
 	* Find Members by firstName
 	* @param firstname
 	* {@code} GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/<firstname>
-	*----------------------------------*/
+	*----------------------------------*/ 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/firstname/{firstName}")
@@ -91,6 +91,17 @@ public class MemberRestResource {
 	@Path("/surname/{surName}")
 	public Response getMembersBySurName(@PathParam("surName") String surName){
 		return Response.ok(dao.findMembersBySurName(surName)).build();
+	}
+	
+	/**---------------------------------
+	* Find Members by firstName, surName or email
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/criteria/<criteria>
+	*-----------------------------------*/
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/criteria/{criteria}")
+	public Response getMemberByAnything(@PathParam("criteria") String criteria){
+		return Response.ok(dao.findMember(criteria)).build();
 	}
 		
 }
