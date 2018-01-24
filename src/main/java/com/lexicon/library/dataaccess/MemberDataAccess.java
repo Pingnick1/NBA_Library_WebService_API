@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.lexicon.library.domain.Member;
+import com.lexicon.library.domain.memberStatus;
 
 @Local
 public interface MemberDataAccess {
@@ -26,5 +27,11 @@ public interface MemberDataAccess {
 	public List<Member> findMembersByFirstName(String firstName);
 
 	public List<Member> findMember(String criteria);
+
+	public Member setMemberStatus(int memberId, memberStatus newStatus);
+	
+	public memberStatus getMemberStatus(int memberId);
+
+	public List<memberStatus> getMemberPossibleStatus();
 
 }

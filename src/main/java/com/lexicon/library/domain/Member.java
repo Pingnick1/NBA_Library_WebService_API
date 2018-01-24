@@ -28,6 +28,9 @@ public class Member {
 	@Email
 	private String email;
 	
+	@NotNull
+	private memberStatus status;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="member")
 	//@JoinColumn(name="LOAN_ID", nullable=true)
 	private Set<Loan> loan;
@@ -69,6 +72,14 @@ public class Member {
 		this.firstName = firstName;
 		this.surName = surName;
 		this.email = email;
+	}
+
+	public memberStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(memberStatus status) {
+		this.status = status;
 	}
 
 	/**

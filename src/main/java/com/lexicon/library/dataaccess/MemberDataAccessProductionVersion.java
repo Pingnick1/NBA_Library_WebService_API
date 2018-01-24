@@ -1,5 +1,6 @@
 package com.lexicon.library.dataaccess;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.lexicon.library.domain.Member;
+import com.lexicon.library.domain.memberStatus;
 
 @Stateless
 public class MemberDataAccessProductionVersion implements MemberDataAccess {
@@ -91,13 +93,50 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	@Override
 	public List<Member> findMember(String criteria) {
 		//TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.firstName LIKE ?1 OR m.surName LIKE ?1 OR m.email LIKE ?1 ", Member.class);
-		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.firstName LIKE ?1 OR m.surName LIKE ?1 OR m.email LIKE ?1 ", Member.class);
-		
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.firstName LIKE ?1 OR m.surName LIKE ?1 OR m.email LIKE ?1 ", Member.class);		
 		query.setParameter(1, "%" + criteria + "%");
-		//query.setParameter(2, "%" + criteria + "%");
-		//query.setParameter(3, "%" + criteria + "%");
 		
 		return query.getResultList();
 	}
 	
+	/**
+	 *  Find members by firstName, surName or email.
+	 *  @param memberId
+	 *  @param newStatus
+	 *  @return	Member
+	 */
+	@Override
+	public Member setMemberStatus(int memberId, memberStatus newStatus) {
+		Member m =  em.find(Member.class, memberId);
+		
+		m.setStatus(newStatus);
+		
+		return m;
+	}
+	
+	/**
+	 *  Get member status
+	 *  @param memberId
+	 *  @return	Member
+	 */
+	@Override
+	public memberStatus getMemberStatus(int memberId) {
+		Member m =  em.find(Member.class, memberId);
+		
+		//m.setStatus(newStatus);
+		
+		return m.getStatus();
+	}
+	
+	/**
+	 *  Get All possible statuses
+
+	 *  @return	List<memberStatus>
+	 */
+	@Override
+	public List<memberStatus> getMemberPossibleStatus() {
+		List<memberStatus> newList = Arrays.asList(memberStatus.values());
+		
+		return newList;	
+	}
 }
