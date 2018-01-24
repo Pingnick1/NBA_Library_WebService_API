@@ -156,4 +156,13 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 		em.remove(m);
 		return true;
 	}
+
+	@Override
+	public boolean removeMember(int memberid) {
+		Member m = em.find(Member.class, memberid);
+		m.setStatus(memberStatus.UNACTIVE);
+		em.merge(m);
+
+		return true;
+	}
 }

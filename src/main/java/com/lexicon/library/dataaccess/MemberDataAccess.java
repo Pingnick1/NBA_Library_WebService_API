@@ -7,6 +7,7 @@ package com.lexicon.library.dataaccess;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.lexicon.library.domain.Member;
 import com.lexicon.library.domain.memberStatus;
@@ -37,5 +38,7 @@ public interface MemberDataAccess {
 	public List<Member> findMembersByStatus(memberStatus status);
 
 	public boolean deleteMember(int memberid);
+
+	public boolean removeMember(int memberid);
 
 }

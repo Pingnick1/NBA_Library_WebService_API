@@ -155,15 +155,27 @@ public class MemberRestResource {
 	}
 	
 	/**---------------------------------
-	* Get All possible Member Status
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/status
+	* Get Delete member from Member, HARD
+	* DELETE: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/{memberid}
 	*-----------------------------------*/
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/{memberid}")
+	@Path("/id/{memberid}")
 	public Response deleteMember(@PathParam("memberid") int memberid){
 		
 		return Response.ok(dao.deleteMember(memberid)).build();
+	}
+	
+	/**---------------------------------
+	* Set Delete member from Member, SOFT (Just change status)
+	* PUT: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/{memberid}
+	*-----------------------------------*/
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/id/{memberid}")
+	public Response removeMember(@PathParam("memberid") int memberid){
+		
+		return Response.ok(dao.removeMember(memberid)).build();
 	}
 		
 }
