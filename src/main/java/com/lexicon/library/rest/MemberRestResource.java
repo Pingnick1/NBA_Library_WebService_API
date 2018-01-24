@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -107,6 +108,17 @@ public class MemberRestResource {
 	}
 	
 	/**---------------------------------
+	* Find Members by status
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/surname/<surname>
+	*-----------------------------------*/
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/status/{status}")
+	public Response getMembersByStatus(@PathParam("status") memberStatus status){
+		return Response.ok(dao.findMembersByStatus(status)).build();
+	}
+	
+	/**---------------------------------
 	* Set Member status
 	* PUT: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/{memberid}/status/<newStatus>
 	*-----------------------------------*/
@@ -140,6 +152,18 @@ public class MemberRestResource {
 	public Response getMemberPossibleStatus(){
 		
 		return Response.ok(dao.getMemberPossibleStatus()).build();
+	}
+	
+	/**---------------------------------
+	* Get All possible Member Status
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/status
+	*-----------------------------------*/
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{memberid}")
+	public Response deleteMember(@PathParam("memberid") int memberid){
+		
+		return Response.ok(dao.deleteMember(memberid)).build();
 	}
 		
 }

@@ -34,4 +34,8 @@ public interface MemberDataAccess {
 
 	public List<memberStatus> getMemberPossibleStatus();
 
+	public List<Member> findMembersByStatus(memberStatus status);
+
+	public boolean deleteMember(int memberid);
+
 }

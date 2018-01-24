@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.lexicon.library.domain.Loan;
 import com.lexicon.library.domain.Member;
 import com.lexicon.library.domain.memberStatus;
 
@@ -110,6 +111,7 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 		Member m =  em.find(Member.class, memberId);
 		
 		m.setStatus(newStatus);
+		em.merge(m);
 		
 		return m;
 	}
@@ -121,16 +123,12 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 */
 	@Override
 	public memberStatus getMemberStatus(int memberId) {
-		Member m =  em.find(Member.class, memberId);
-		
-		//m.setStatus(newStatus);
-		
+		Member m =  em.find(Member.class, memberId);	
 		return m.getStatus();
 	}
 	
 	/**
 	 *  Get All possible statuses
-
 	 *  @return	List<memberStatus>
 	 */
 	@Override
@@ -138,5 +136,24 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 		List<memberStatus> newList = Arrays.asList(memberStatus.values());
 		
 		return newList;	
+	}
+
+	/**
+	 * Get Members by Status
+	 * @param Status
+	 */
+	@Override
+	public List<Member> findMembersByStatus(memberStatus status) {
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.status=?1", Member.class);		
+		query.setParameter(1, status.name());
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public boolean deleteMember(int memberid) {
+		Member m = em.find(Member.class, memberid);
+		em.remove(m);
+		return true;
 	}
 }
