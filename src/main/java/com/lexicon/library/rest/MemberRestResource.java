@@ -2,6 +2,7 @@ package com.lexicon.library.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -46,12 +47,17 @@ public class MemberRestResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/all")
 	public Response getAllMembers(){
-		return Response.ok(dao.findAll()).build();
+		List<Member> memberList = dao.findAll();
+		
+		if(memberList.isEmpty())
+			return Response.noContent().build();
+		else
+			return Response.ok(memberList).build();
 	}
 	
 	/**---------------------------------
 	* Find Member By Id
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/<id>
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/id/{id}
 	* param id
 	* param string
 	*----------------------------------*/
@@ -64,63 +70,95 @@ public class MemberRestResource {
 	
 	/**---------------------------------
 	* Find Member By Email
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/email/<email>
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/email/{email}
 	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/email/{email}")
 	public Response getMemberByEmail(@PathParam("email") String email){
-		return Response.ok(dao.findMemberByEmail(email)).build();
+		Member m = dao.findMemberByEmail(email);
+		
+		if(m==null)
+			return Response.noContent().build();
+		else
+			return Response.ok(m).build();
 	}
 	
 	/**---------------------------------
 	* Find Members by firstName
 	* @param firstname
-	* {@code} GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/<firstname>
+	* {@code} GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/firstname/{firstname}
 	*----------------------------------*/ 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/firstname/{firstName}")
 	public Response getMembersByFirstName(@PathParam("firstName") String firstName){
-		return Response.ok(dao.findMembersByFirstName(firstName)).build();
+		List<Member> memberList = dao.findMembersByFirstName(firstName);
+		
+		if(memberList.isEmpty())
+			return Response.noContent().build();
+		else
+			return Response.ok(memberList).build();
+		
+		//return Response.ok(dao.findMembersByFirstName(firstName)).build();
 	}
 	
 	/**---------------------------------
 	* Find Members by surName
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/surname/<surname>
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/surname/{surname}
 	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/surname/{surName}")
 	public Response getMembersBySurName(@PathParam("surName") String surName){
-		return Response.ok(dao.findMembersBySurName(surName)).build();
+		List<Member> memberList = dao.findMembersBySurName(surName);
+		
+		if(memberList.isEmpty())
+			return Response.noContent().build();
+		else
+			return Response.ok(memberList).build();
+		
+		//return Response.ok(dao.findMembersBySurName(surName)).build();
 	}
 	
 	/**---------------------------------
 	* Find Members by firstName, surName or email
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/criteria/<criteria>
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/criteria/{criteria}
 	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/criteria/{criteria}")
 	public Response getMemberByAnything(@PathParam("criteria") String criteria){
-		return Response.ok(dao.findMember(criteria)).build();
+		List<Member> memberList = dao.findMember(criteria);
+		
+		if(memberList.isEmpty())
+			return Response.noContent().build();
+		else
+			return Response.ok(memberList).build();		
+		
+		//return Response.ok(dao.findMember(criteria)).build();
 	}
 	
 	/**---------------------------------
 	* Find Members by status
-	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/surname/<surname>
+	* GET: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/status/{status}
 	*-----------------------------------*/
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/status/{status}")
 	public Response getMembersByStatus(@PathParam("status") memberStatus status){
-		return Response.ok(dao.findMembersByStatus(status)).build();
+		List<Member> memberList = dao.findMembersByStatus(status);
+		
+		if(memberList.isEmpty())
+			return Response.noContent().build();
+		else
+			return Response.ok(memberList).build();	
+		//return Response.ok(dao.findMembersByStatus(status)).build();
 	}
 	
 	/**---------------------------------
 	* Set Member status
-	* PUT: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/{memberid}/status/<newStatus>
+	* PUT: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/{memberid}/status/{newStatus}
 	*-----------------------------------*/
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)

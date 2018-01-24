@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -35,7 +36,7 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 */
 	@Override
 	public List<Member> findAll() {
-		TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m", Member.class);
+		Query query = em.createNativeQuery("SELECT * FROM Member m", Member.class);
 		return query.getResultList();
 	}
 	
@@ -55,10 +56,16 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 * @return Member that matches email
 	 */
 	@Override
-	public Member findMemberByEmail(String email) {
-		TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.email LIKE ?1", Member.class);		
-		query.setParameter(1, email);
-		return query.getSingleResult();
+	public Member findMemberByEmail(String email) {	
+		try{
+			Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.email LIKE ?1", Member.class);		
+			query.setParameter(1, email);
+			Member m = (Member) query.getSingleResult();
+			return m; //(Member) query.getSingleResult();
+		}
+		catch(NoResultException e) {
+			return null;
+		}
 	}
 
 	/**
@@ -68,7 +75,7 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 */
 	@Override
 	public List<Member> findMembersByFirstName(String firstName) {
-		TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.firstName LIKE ?1", Member.class);	
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.firstName LIKE ?1", Member.class);	
 		query.setParameter(1, "%" + firstName + "%");
 		return query.getResultList();
 	}
@@ -80,7 +87,7 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 */
 	@Override
 	public List<Member> findMembersBySurName(String surName) {
-		TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.surName LIKE ?1", Member.class);
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.surName LIKE ?1", Member.class);
 		query.setParameter(1, "%" + surName + "%");
 		return query.getResultList();
 	}
@@ -109,7 +116,6 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	@Override
 	public Member setMemberStatus(int memberId, memberStatus newStatus) {
 		Member m =  em.find(Member.class, memberId);
-		
 		m.setStatus(newStatus);
 		em.merge(m);
 		
