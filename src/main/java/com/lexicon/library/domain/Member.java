@@ -10,37 +10,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull	
-	private String firstName;
-	
 	@NotNull
-	private String surName;
-	
+    @NotEmpty
 	@Email
 	private String email;
 	
-	@Enumerated(EnumType.STRING)
 	@NotNull
+	@Size(min = 1, max = 25)
+    @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
+	private String firstName;
+	
+	@NotNull
+	@Size(min = 1, max = 25)
+    @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
+	private String surName;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
 	private memberStatus status;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="member")
-	//@JoinColumn(name="LOAN_ID", nullable=true)
 	private Set<Loan> loan;
 	
-//	public Set<Loan> getLoan() {
-//		return loan;
-//	}
 
 	/**
 	 * Set loan

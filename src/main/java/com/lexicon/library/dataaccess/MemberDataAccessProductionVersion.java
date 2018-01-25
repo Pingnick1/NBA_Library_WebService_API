@@ -2,6 +2,7 @@ package com.lexicon.library.dataaccess;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -9,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 //import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 //import com.lexicon.library.domain.Loan;
 import com.lexicon.library.domain.Member;
@@ -20,6 +24,8 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	@Inject
 	private EntityManager em;
 	
+
+	
 	/********************************************************
 	 * 	Create new member.
 	 * 	@param New Member
@@ -27,7 +33,14 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 ********************************************************/
 	@Override
 	public void insert(Member newMember) {
+		//Member m = findMemberByEmail(newMember.getEmail());
+		//if(m == null) {
 		em.persist(newMember);
+		//return true;
+		//}			
+		//else {
+		//	return false;
+		//}
 	}
 
 	/********************************************************
@@ -54,18 +67,27 @@ public class MemberDataAccessProductionVersion implements MemberDataAccess {
 	 * 	Find member by Email
 	 * @param email
 	 * @return Member that matches email
+	 * @throws NoResultException
 	 ********************************************************/
 	@Override
-	public Member findMemberByEmail(String email) {	
-		try{
-			Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.email LIKE ?1", Member.class);		
-			query.setParameter(1, email);
-			Member m = (Member) query.getSingleResult();
-			return m; //(Member) query.getSingleResult();
-		}
-		catch(NoResultException e) {
-			return null;
-		}
+	public Member findMemberByEmail(String email) throws NoResultException { 
+//		CriteriaBuilder cb = em.getCriteriaBuilder();
+//        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+//        Root<Member> member = criteria.from(Member.class);
+//        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
+//        // feature in JPA 2.0
+//        // criteria.select(member).where(cb.equal(member.get(Member_.name), email));
+//        criteria.select(member).where(cb.equal(member.get("email"), email));
+//        return em.createQuery(criteria).getSingleResult();
+		
+		
+		Member m = null;
+		Query query = em.createNativeQuery("SELECT * FROM Member m WHERE m.email LIKE ?1", Member.class);		
+		query.setParameter(1, email);
+		m = (Member) query.getSingleResult();
+		return m; //(Member) query.getSingleResult();
+		
+
 	}
 
 	/********************************************************

@@ -115,6 +115,12 @@
             <artifactId>jaxrs-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+        	<groupId>org.jboss.resteasy</groupId>
+        	<artifactId>resteasy-jaxb-provider</artifactId>
+        	<version>3.0.16.Final</version>
+		</dependency>
 
         <!-- Import the JPA API, we use provided scope as the API is included in 
             JBoss WildFly -->
