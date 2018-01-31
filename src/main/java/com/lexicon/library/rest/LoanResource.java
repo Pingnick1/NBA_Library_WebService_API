@@ -25,10 +25,10 @@ import com.lexicon.library.domain.Loan;
 
 /** 
  * This resource takes in JSON Strings. Example:
- * To make startDate the current date:
+ * To make startDate the current date with a custom end date:
  * {"endDate":"2017-12-09"}
- *  * to set your own startDate:
- * {"startDate":"2017-12-09", "endDate":"2017-12-09"}
+ *  
+ * 
  */
 @Path("/loan")
 public class LoanResource {
