@@ -210,7 +210,7 @@ public class MemberRestResource {
 	
 	/**---------------------------------
 	* Set Member status
-	* PUT: http://<adress>:<port>/NBA_Library_WebService_API/rest/member/{memberid}/status/{newStatus}
+	* PUT: http://<adress>:<port>/booklibrary/member/{memberid}/status/{newStatus}
 	*-----------------------------------*/
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
